@@ -21,7 +21,6 @@ jobs:
     - name: Download CSV
       run: |
         wget -O data.csv https://docs.google.com/spreadsheets/d/e/2PACX-1vR6IXc20ee3tpxfrCVJ8WBisuGPse72R3hQd2Wa1Sus8m-K7pG4VzzHxt94Av3pHelqFdWOGzrXuOzm/pub?gid=2146819229&single=true&output=csv
-_data
         
     - name: Create directory if not exists
       run: mkdir -p _data
