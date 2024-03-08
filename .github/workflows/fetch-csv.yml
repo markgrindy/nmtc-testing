@@ -1,4 +1,5 @@
-name: Download CSV and Save
+yaml
+name: Fetch and Save CSV
 
 on:
   push:
@@ -6,24 +7,23 @@ on:
       - main
 
 jobs:
-  download-csv:
+  fetch-and-save-csv:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2.4.0
-      
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      uses: actions/checkout@v2
 
     - name: Download CSV
       run: |
-        wget -O data.csv https://docs.google.com/spreadsheets/d/e/2PACX-1vR6IXc20ee3tpxfrCVJ8WBisuGPse72R3hQd2Wa1Sus8m-K7pG4VzzHxt94Av3pHelqFdWOGzrXuOzm/pub?gid=2146819229&single=true&output=csv
-        
-    - name: Create directory if not exists
-      run: mkdir -p _data
-      
-    - name: Move CSV to desired location
-      run: mv data.csv _data
+        curl -o race-schedule.csv https://docs.google.com/spreadsheets/d/e/2PACX-1vR6IXc20ee3tpxfrCVJ8WBisuGPse72R3hQd2Wa1Sus8m-K7pG4VzzHxt94Av3pHelqFdWOGzrXuOzm/pub?gid=2146819229&single=true&output=csv
+
+    - name: Save CSV as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: csv-data
+        path: _data/race-schedule.csv
+
+    - name: Replace existing file
+      run: |
+        cp data.csv $GITHUB_WORKSPACE/_data/race-schedule.csv
