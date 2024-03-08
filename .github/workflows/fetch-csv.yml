@@ -1,4 +1,3 @@
-yaml
 name: Fetch and Save CSV
 
 on:
