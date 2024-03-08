@@ -23,4 +23,5 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add _data/race-schedule.csv
         git commit -m "Add race schedule CSV"
+        git pull origin main
         git push
