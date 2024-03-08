@@ -17,12 +17,10 @@ jobs:
       run: |
         curl -o _data/race-schedule.csv https://docs.google.com/spreadsheets/d/e/2PACX-1vR6IXc20ee3tpxfrCVJ8WBisuGPse72R3hQd2Wa1Sus8m-K7pG4VzzHxt94Av3pHelqFdWOGzrXuOzm/pub?gid=2146819229&single=true&output=csv
 
-    - name: Save CSV as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: csv-data
-        path: _data/race-schedule.csv
-
-    # - name: Replace existing file
-    #   run: |
-    #     cp _data/race-schedule.csv $GITHUB_WORKSPACE/_data/race-schedule.csv
+    - name: Commit CSV to repository
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add _data/race-schedule.csv
+        git commit -m "Add race schedule CSV"
+        git push
