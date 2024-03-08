@@ -23,6 +23,6 @@ jobs:
         name: csv-data
         path: _data/race-schedule.csv
 
-    - name: Replace existing file
-      run: |
-        cp _data/race-schedule.csv $GITHUB_WORKSPACE/_data/race-schedule.csv
+    # - name: Replace existing file
+    #   run: |
+    #     cp _data/race-schedule.csv $GITHUB_WORKSPACE/_data/race-schedule.csv
